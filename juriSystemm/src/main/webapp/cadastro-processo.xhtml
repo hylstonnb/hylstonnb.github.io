@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:component id="compCadProcesso">
+
+	<h:form id="formCadastroProcesso" styleClass="form" prependId="true">
+		<h:panelGrid columns="5" cellpadding="3">
+			<h:outputLabel value="Nome cliente:" />
+			<p:outputLabel value="#{processoController.processo.cliente.nome}"
+				style="width:160%" id="razaoSocial" />
+
+			<p:spacer width="150" height="30" />
+
+			<h:outputLabel value="Prioridade:" />
+			<p:selectOneMenu value="#{processoController.processo.prioridade}">
+				<f:selectItems
+					value="#{processoController.selectItensEnumPrioridade}" />
+			</p:selectOneMenu>
+
+			<p:outputLabel value="Natureza Ação:" for="natAcao" />
+			<p:inputText value="#{processoController.processo.naturezaProcesso}"
+				id="natAcao" />
+
+			<p:spacer width="150" height="30" />
+
+			<p:outputLabel value="Porcentagem:" for="porcentagem" />
+			<p:spinner value="#{processoController.processo.porcentagem}" min="0"
+				max="100" id="porcentagem" />
+
+			<p:outputLabel value="Advogado:" for="advogado" />
+			<p:autoComplete id="advogado" dropdown="true"
+				value="#{processoController.adv1}"
+				completeMethod="#{processoController.completeAdvogado}"
+				rendered="#{usuarioController.renderizarAdvogados}" />
+			<p:outputLabel
+				value="#{processoController.processo.advogados[0].nome}"
+				rendered="#{!usuarioController.renderizarAdvogados}" />
+
+			<p:spacer width="150" height="30" />
+
+			<p:outputLabel value="Advogado 2:" for="advogado" />
+			<p:autoComplete id="advogado2" dropdown="true"
+				value="#{processoController.adv2}"
+				completeMethod="#{processoController.completeAdvogado}"
+				rendered="#{usuarioController.renderizarAdvogados}" />
+			<p:outputLabel
+				value="#{processoController.processo.advogados[1].nome}"
+				rendered="#{!usuarioController.renderizarAdvogados}" />
+
+		</h:panelGrid>
+
+		<p:spacer width="100" />
+
+		<p:fieldset legend="Documentos" id="fstDocuemntos" toggleable="true"
+			collapsed="false">
+			<h:panelGrid columns="2">
+
+				<h:panelGrid cellpadding="3">
+					<p:pickList id="pklDocumentos"
+						value="#{processoController.dualListDocumentos}" var="documento"
+						itemValue="#{documento}" itemLabel="#{documento.descricao}"
+						converter="documentoConverter" showSourceFilter="true"
+						style="height: 50px" filterMatchMode="contains">
+
+						<f:facet name="sourceCaption">Todos</f:facet>
+						<f:facet name="targetCaption">Entregues</f:facet>
+
+					</p:pickList>
+				</h:panelGrid>
+
+				<h:panelGrid cellpadding="3">
+					<p:pickList id="pklDocumentosPendentes"
+						value="#{processoController.dualListDocumentosPendentes}"
+						var="documento" itemValue="#{documento}"
+						itemLabel="#{documento.descricao}" converter="documentoConverter"
+						showSourceFilter="true" style="height: 50px"
+						filterMatchMode="contains">
+
+						<f:facet name="sourceCaption">Todos</f:facet>
+						<f:facet name="targetCaption">Pendentes</f:facet>
+
+					</p:pickList>
+				</h:panelGrid>
+
+			</h:panelGrid>
+
+			<p:spacer height="15px" />
+
+			<h:panelGrid columns="4" cellpadding="3">
+				<p:commandButton value="Novo Documento"
+					action="#{documentoController.instanciar}"
+					update=":tvw:formCadastroProcesso:dlgCadastroDocumento"
+					oncomplete="tvw:formCadastroProcesso:dlgCadastroDocumento.show()" />
+
+				<p:spacer width="20" />
+
+				<h:outputLabel value="Observações:" styleClass="bold" />
+				<p:inputTextarea
+					value="#{processoController.processo.observacaoDocs}"
+					style="width: 650px" cols="150" />
+			</h:panelGrid>
+		</p:fieldset>
+
+
+
+		<p:dialog header="Cadastro de Documento" id="dlgCadastroDocumento"
+			widgetVar="dlgCadastroDocumento" modal="true"
+			style="text-align: left">
+
+			<p:messages id="messages" globalOnly="true" />
+
+			<h:panelGrid cellpadding="3">
+				<h:outputLabel value="Descrição" />
+				<p:inputText styleClass="inputText"
+					value="#{documentoController.documento.descricao}" id="itDocumento" />
+			</h:panelGrid>
+
+			<p:spacer height="20px" />
+
+			<h:panelGrid styleClass="pnCenter">
+				<p:commandButton value="Salvar"
+					action="#{documentoController.salvar}" update="messages"
+					oncomplete="atualizarDocList()" />
+			</h:panelGrid>
+
+		</p:dialog>
+
+		<script type="text/javascript">
+			/* <![CDATA[ */
+			$(function() {
+				registerConfirmDialogHotkeys(dlgCadastroDocumento);
+			});
+			/* ]]> */
+		</script>
+
+	</h:form>
+</ui:component>
+</html>

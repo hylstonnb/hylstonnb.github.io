@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<link class="component" type="text/css" rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/resources/css/estilo.css" />
+	<script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/js/geral.js" />
+</h:head>
+
+<body>
+	<f:view encoding="ISO-8859-1">
+
+
+		<h:form id="formLogin" styleClass="form">
+
+			<div style= "top: 25%; left: 40%; position: absolute">
+					
+				<h:panelGrid styleClass="pnCenter" width="100%">
+					<p:graphicImage url="/resources/images/logo3b.jpg"/>
+				</h:panelGrid>
+			
+				<p:spacer width="15" />
+				<p:fieldset legend="Login" style="width: 320px;text-align:left">
+
+					<p:growl globalOnly="true" id="growl"/>
+
+					<h:panelGrid cellpadding="5" id="panel">
+					
+						<p:focus context="panel" /> 
+
+						<h:outputLabel value="E-mail" />
+						<p:inputText value="#{loginController.usuario.email}" styleClass="input" id="email" required="true"
+							requiredMessage="Informe seu e-mail" />
+						<p:message for="email" display="text" />
+
+						<h:outputLabel value="Senha" />
+						<p:password value="#{loginController.usuario.senha}" styleClass="input" id="senha" required="true"
+							requiredMessage="informe sua senha" />
+						<p:message for="senha" display="text" />
+
+						<h:panelGrid columns="3" cellpadding="6">
+							<p:commandButton action="#{loginController.autenticarUsuario}" value="Entrar" ajax="false"  />
+							<p:spacer />
+							<p:commandLink value="Esqueci minha senha" styleClass="link" update=":frmDialog:dlgRecuperarSenha"
+								oncomplete="frmDialog:dlgRecuperarSenha.show()" />
+						</h:panelGrid>
+
+					</h:panelGrid>
+
+				</p:fieldset>
+
+			</div>
+		</h:form>
+
+		<h:form id="frmDialog">
+			<p:dialog header="Enviar nova senha" closable="true" id="dlgRecuperarSenha" widgetVar="dlgRecuperarSenha">
+
+				<h:panelGrid id="pnlAlterarSenha">
+					<h:outputLabel value="Email" />
+					<p:inputText value="#{loginController.usuarioNovaSenha.email}" styleClass="inputText" id="emailDialog" required="true"
+						requiredMessage="Informe seu e-mail" />
+					<p:message for="emailDialog" display="text" />
+					<h:outputLabel value="Data de nascimento" />
+					<p:calendar value="#{loginController.usuarioNovaSenha.dataNascimento}" showOn="button" yearRange="c-100:c" navigator="true" 
+						pattern="dd/MM/yyyy" id="caDataNasc" required="true" requiredMessage="Informe sua data de nascimento"/>
+					<p:message for="caDataNasc" display="text" />
+					
+					<p:spacer height="20"/>
+
+					<h:panelGrid styleClass="pnCenter">
+						<p:commandButton action="#{loginController.enviarEmailAlterarSenha}" value="Enviar" update="pnlAlterarSenha, :formLogin:growl" />
+					</h:panelGrid>
+				</h:panelGrid>
+
+			</p:dialog>
+		</h:form>
+
+		
+	</f:view>
+
+</body>
+
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<link class="component" type="text/css" rel="stylesheet"
+		href="#{facesContext.externalContext.requestContextPath}/resources/css/estilo.css" />
+	<script type="text/javascript"
+		src="#{facesContext.externalContext.requestContextPath}/resources/js/geral.js" />
+</h:head>
+
+<body>
+	<f:view encoding="ISO-8859-1">
+		<p:panel style="width:90%;text-align:center;margin-left:5%">
+			<div align="center">
+				<h:form styleClass="form">
+					
+					<p:spacer height="15" />
+
+					<h:panelGrid columns="2" width="100%">
+						<h:panelGrid columns="3" cellpadding="3"
+							rendered="#{usuarioController.usuarioAutenticado != null}">
+							<h:outputText value="Usuario:" />
+							<h:outputText
+								value="#{usuarioController.usuarioAutenticado.nome}" />
+						</h:panelGrid>
+
+						<h:panelGrid styleClass="pnRight" width="100%">
+							<p:graphicImage url="/resources/images/imgtopojur.jpg"
+								height="70" />
+						</h:panelGrid>
+					</h:panelGrid>
+
+					<p:spacer height="20"
+						rendered="#{usuarioController.usuarioAutenticado != null}" />
+
+					<p:menubar
+						rendered="#{usuarioController.usuarioAutenticado != null}">
+
+						<p:submenu label="Cadastro">
+							<p:menuitem value="Cliente"
+								action="#{abasController.exibirAbaCadCliente}" update=":tvw"
+								rendered="#{!usuarioController.renderizarMenu}" />
+							<p:menuitem value="Captador"
+								action="#{abasController.exibirAbaCadCaptador}"
+								rendered="#{!usuarioController.renderizarMenu}" update=":tvw" />
+							<p:menuitem value="Empresa"
+								action="#{abasController.exibirAbaCadEmpresa}" ajax="false"
+								rendered="#{!usuarioController.renderizarMenu}" />
+						</p:submenu>
+
+						<p:menuitem value="Listagem de Processos"
+							action="#{processoController.listagemProcessos}" ajax="false"
+							rendered="#{!usuarioController.renderizarMenu}" />
+
+						<p:submenu label="Usuarios">
+							<p:menuitem value="Cadastro"
+								action="#{usuarioController.abrirCadastro}" ajax="false"
+								rendered="#{usuarioController.usuarioAutenticado.perfil.value eq 'Administrador'}" />
+							<p:menuitem value="Alterar Senha"
+								action="#{usuarioController.instanciarUsuario}"
+								oncomplete="frmAlterarSenha:dlgAlterarSenha.show()" />
+						</p:submenu>
+
+						<p:menuitem value="Sair" action="#{usuarioController.logOut}"
+							ajax="false" />
+					</p:menubar>
+
+				</h:form>
+			</div>
+
+			<p:spacer height="20px"
+				rendered="#{usuarioController.usuarioAutenticado != null}" />
+
+			<div align="center">
+				<p:tabView id="tvw" styleClass="form" activeIndex="#{abasController.indexAtivo}">
+					
+					<p:messages autoUpdate="true"/>
+
+					<p:ajax event="tabClose" listener="#{abasController.onTabClose}" />
+
+					<p:ajax listener="#{clienteController.onChange}" event="tabChange"/>
+
+					<p:tab title="Cadastro Cliente" closable="true"
+						rendered="#{abasController.exibirAbaCadCliente}">
+						<ui:include src="/cadastro-cliente.xhtml" />
+					</p:tab>
+
+					<p:tab title="Cadastro Captador"
+						rendered="#{abasController.exibirAbaCadCaptador}" closable="true">
+						<ui:include src="/cadastro-captador.xhtml" />
+					</p:tab>
+
+					<p:tab title="Cadastro Empresa"
+						rendered="#{abasController.exibirAbaCadEmpresa}" closable="true">
+						<ui:include src="/cadastro-empresa.xhtml" />
+					</p:tab>
+
+				</p:tabView>
+			</div>
+		</p:panel>
+		<ui:include src="/confirm-dialog.xhtml" />
+
+	</f:view>
+
+</body>
+
+</html>

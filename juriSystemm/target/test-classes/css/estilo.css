@@ -1,0 +1,134 @@
+@charset "utf-8";
+
+.link {
+	font-size: 15px;
+	color: blue !important;
+}
+
+.inputText {
+	width: 200% !important;
+}
+
+.input {
+	
+	width: 280px;
+}
+
+.form {
+	width: 95%;
+	text-align: left;
+}
+
+.pnCenter {
+	width: 100%;
+	text-align: center;
+}
+
+.pnLeft {
+	text-align: left;
+	width: 100%;
+}
+
+.pnRight {
+	width: 100%;
+	text-align: right;
+}
+
+.imagem24x24 {
+	width: 24px;
+	height: 24px;
+}
+
+.imagem30x30 {
+	width: 30px;
+	height: 30px;
+}
+
+.imagem32x32 {
+	width: 32px;
+	height: 32px;
+}
+
+.imagem40x40 {
+	width: 40px;
+	height: 40px;
+}
+
+.imagem50x60 {
+	width: 60px;
+	height: 65px;
+}
+
+.ui-selectmanycheckbox label,.ui-selectoneradio label {
+	margin-right: 20px !important;
+	font-weight: normal !important;
+}
+
+.selectMenu {
+	width: 163px !important;
+}
+
+.semBorda td {
+	border: none !important;
+	text-align: center !important;
+}
+
+
+/*label{
+	font-weight: bold;	
+}*/
+.bold {
+	font-weight: bold;
+}
+
+.button {
+	min-width: 120px;
+}
+
+.button2 {
+	min-width: 90px;
+}
+
+.filter{
+	min-width: 120px;
+}
+
+.ui-growl {	
+	top: 8%;
+	right: 38%;		
+}
+
+.red{	
+	color: red;	
+}
+
+.filter{
+	
+	width: 180px;
+}
+
+.ui-picklist .ui-picklist-list{
+	
+	height: 125px;	
+}
+
+.formTab{
+	
+	width: 85%;
+	text-align: left;
+}
+
+.backgverde{
+	
+	background-color: #00FF00;
+}
+
+.backgred{
+	
+	background-color: #FFCCCC;
+}
+
+.centered {
+position: absolute;
+margin-left:250px;
+}

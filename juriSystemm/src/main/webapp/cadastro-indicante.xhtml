@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:component id="compCadIndicante">
+
+	<h:form id="formCadastroIndicante" styleClass="form" prependId="true">
+
+		<h:panelGrid columns="2" width="100%">
+			<h:panelGrid columns="2" cellpadding="3">
+				<h:outputLabel value="Nome:" />
+				<p:inputText value="#{indicanteController.indicante.nome}"
+					styleClass="inputText" />
+			</h:panelGrid>
+
+			<h:panelGrid columns="2" cellpadding="3">
+				<p:outputLabel value="CPF:" for="cpf" />
+				<p:inputMask mask="999.999.999-99" id="cpf"
+					value="#{indicanteController.indicante.cpf}" style="width:80%" />
+			</h:panelGrid>
+		</h:panelGrid>
+
+		<p:spacer width="30" />
+
+		<h:panelGrid columns="2" cellpadding="3">
+			<h:outputLabel value="Observações:" />
+			<p:inputTextarea value="#{indicanteController.indicante.observacoes}"
+				style="width: 400%" />
+		</h:panelGrid>
+
+		<p:spacer height="20" />
+
+		<p:fieldset legend="Telefones" id="fsTelefones">
+
+			<h:panelGrid cellpadding="3" columns="7">
+				<p:inputMask mask="(99) 9999-9999?9"
+					value="#{indicanteController.telefones[0].numero}" />
+
+				<p:spacer width="20px" />
+
+				<h:outputLabel value="Operadora:" />
+				<p:selectOneMenu
+					value="#{indicanteController.telefones[0].operadora}">
+					<f:selectItems value="#{indicanteController.selectItensOperadora}" />
+				</p:selectOneMenu>
+
+				<p:spacer width="20px" />
+
+				<h:outputLabel value="Pessoa de contato:" />
+				<p:inputText value="#{indicanteController.telefones[0].contato}"
+					style="width: 200px;" />
+
+			</h:panelGrid>
+
+			<h:panelGrid cellpadding="3" columns="7">
+				<p:inputMask mask="(99) 9999-9999?9"
+					value="#{indicanteController.telefones[1].numero}" />
+				<p:spacer width="20px" />
+
+				<h:outputLabel value="Operadora:" />
+				<p:selectOneMenu
+					value="#{indicanteController.telefones[1].operadora}">
+					<f:selectItems value="#{indicanteController.selectItensOperadora}" />
+				</p:selectOneMenu>
+
+				<p:spacer width="20px" />
+
+				<h:outputLabel value="Pessoa de contato:" />
+				<p:inputText value="#{indicanteController.telefones[1].contato}"
+					style="width: 200px;" />
+			</h:panelGrid>
+
+			<h:panelGrid cellpadding="3" columns="7">
+				<p:inputMask mask="(99) 9999-9999?9"
+					value="#{indicanteController.telefones[2].numero}" />
+				<p:spacer width="20px" />
+
+				<h:outputLabel value="Operadora:" />
+				<p:selectOneMenu
+					value="#{indicanteController.telefones[2].operadora}">
+					<f:selectItems value="#{indicanteController.selectItensOperadora}" />
+				</p:selectOneMenu>
+
+				<p:spacer width="20px" />
+
+				<h:outputLabel value="Pessoa de contato:" />
+				<p:inputText value="#{indicanteController.telefones[2].contato}"
+					style="width: 200px;" />
+			</h:panelGrid>
+
+			<h:panelGrid cellpadding="3" columns="7">
+				<p:inputMask mask="(99) 9999-9999?9"
+					value="#{indicanteController.telefones[3].numero}" />
+				<p:spacer width="20px" />
+
+				<h:outputLabel value="Operadora:" />
+				<p:selectOneMenu
+					value="#{indicanteController.telefones[3].operadora}">
+					<f:selectItems value="#{indicanteController.selectItensOperadora}" />
+				</p:selectOneMenu>
+
+				<p:spacer width="20px" />
+
+				<h:outputLabel value="Pessoa de contato:" />
+				<p:inputText value="#{indicanteController.telefones[3].contato}"
+					style="width: 200px;" />
+			</h:panelGrid>
+
+		</p:fieldset>
+
+		<h:panelGrid>
+			<h:column>
+				<p:spacer width="50" />
+				<p:commandButton value="Novo"
+					action="#{indicanteController.instanciar}" ajax="false" />
+				<p:spacer width="30px" height="0" />
+				<p:commandButton value="Salvar" styleClass="button"
+					action="#{abasController.salvarIndicante}" ajax="false" />
+			</h:column>
+		</h:panelGrid>
+	</h:form>
+</ui:component>
+</html>

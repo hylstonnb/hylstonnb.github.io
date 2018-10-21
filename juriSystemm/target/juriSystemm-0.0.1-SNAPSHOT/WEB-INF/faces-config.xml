@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+	version="2.0">
+
+	<application>
+		<!-- resolver as palavras resevadas do spring para o jsf -->
+		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+		<resource-handler>org.primefaces.application.PrimeResourceHandler</resource-handler>
+
+		<!-- ** INTERNACIONALIZACAO ** --> 
+
+<!-- 		<resource-bundle> -->
+<!-- 			<base-name>br.com.ilion.bundle.messages</base-name> -->
+<!-- 			<var>msg</var> -->
+<!-- 		</resource-bundle> -->
+
+<!-- 		<message-bundle>br.com.ilion.bundle.messages</message-bundle> -->
+
+<!-- 		<locale-config> -->
+<!-- 			<default-locale>pt_BR</default-locale> -->
+<!-- 			<supported-locale>pt_BR</supported-locale> -->
+<!-- 			<supported-locale>en_US</supported-locale> -->
+<!-- 		</locale-config> -->
+
+	</application>
+
+	<converter>
+		<converter-for-class>java.lang.Enum</converter-for-class>
+		<converter-class>javax.faces.convert.EnumConverter</converter-class>
+	</converter>
+
+</faces-config>

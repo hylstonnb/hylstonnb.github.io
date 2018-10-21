@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+
+<h:form id="frmConfirmDialog">
+
+	<p:dialog id="dlgConfirmDialog" widgetVar="dlgConfirmDialog" modal="true" header="#{confirmDialogController.header}" dynamic="true">
+
+		<h:panelGrid>
+			<h:outputText value="#{confirmDialogController.confirmMessage}" />
+		</h:panelGrid>
+		<p:spacer height="20px" />
+		
+		<h:panelGrid styleClass="pnCenter" columns="2">
+
+			<p:commandButton binding="#{confirmDialogController.confirmButton}" value="Sim" oncomplete="dlgConfirmDialog.hide()" />
+			<p:commandButton value="Não" oncomplete="dlgConfirmDialog.hide()" />
+
+		</h:panelGrid>
+
+		<p:ajax event="close" listener="#{confirmDialogController.clear}" />
+
+	</p:dialog>
+
+	<script type="text/javascript">
+		 /* <![CDATA[ */
+		 $(function () {
+		    registerConfirmDialogHotkeys(dlgConfirmDialog);
+		 });
+		 /* ]]> */
+	</script>
+
+</h:form>
+</html>

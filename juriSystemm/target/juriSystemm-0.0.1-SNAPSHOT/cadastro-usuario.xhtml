@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:component id="compCadUsuario">
+	<h:form id="formCadastroUsuario" styleClass="form">
+
+		<p:growl />
+
+		<p:panel header="Cadastro de Usuários">
+
+			<h:panelGrid columns="3">
+
+				<h:panelGrid columns="2" cellpadding="3">
+					<h:outputLabel value="Nome:" />
+					<p:inputText value="#{usuarioController.usuario.nome}"
+						style="width: 250px;" />
+
+					<h:outputLabel value="E-mail:" />
+					<p:inputText value="#{usuarioController.usuario.email}"
+						style="width: 250px;" />
+
+					<h:outputLabel value="Data de nasc." />
+					<p:calendar value="#{usuarioController.usuario.dataNascimento}"
+						showOn="button" yearRange="c-100:c" navigator="true"
+						pattern="dd/MM/yyyy" />
+				</h:panelGrid>
+
+				<p:spacer width="30" />
+
+				<h:panelGrid columns="2" cellpadding="3">
+					<h:outputLabel value="Perfil:" />
+					<p:selectOneMenu value="#{usuarioController.usuario.perfil}">
+						<f:selectItems value="#{usuarioController.selectItensPerfil}" />
+					</p:selectOneMenu>
+
+					<h:outputLabel value="Status:" />
+					<p:selectOneMenu value="#{usuarioController.usuario.status}">
+						<f:selectItems value="#{usuarioController.selectItensStatus}" />
+					</p:selectOneMenu>
+
+					<p:spacer height="15" />
+					<p:spacer height="15" />
+				</h:panelGrid>
+
+			</h:panelGrid>
+
+			<p:spacer height="20" />
+
+			<h:panelGrid>
+				<h:column>
+					<p:spacer width="50" />
+					<p:commandButton value="Novo"
+						action="#{usuarioController.instanciar}" ajax="false" />
+					<p:spacer width="30px" height="0" />
+					<p:commandButton value="Salvar" styleClass="button"
+						action="#{abasController.salvarUsuario}" ajax="false" />
+				</h:column>
+			</h:panelGrid>
+
+		</p:panel>
+	</h:form>
+</ui:component>
+</html>

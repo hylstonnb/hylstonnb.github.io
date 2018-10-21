@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:component id="compCadAdvogado">
+
+	<h:form id="formCadastroAdvogado" styleClass="form" prependId="true">
+
+		<h:panelGrid columns="5" cellpadding="3">
+			<h:outputLabel value="Nome:" for="nome" />
+			<p:inputText value="#{advogadoController.advogado.nome}"
+				style="width:160%" id="nome" />
+
+			<p:spacer width="130" height="30" />
+
+			<p:outputLabel value="CPF:" for="cpf" />
+			<p:inputMask mask="999.999.999-99" id="cpf"
+				value="#{advogadoController.advogado.cpf}" style="width:90%" />
+
+			<h:outputLabel value="Num. Inscrição OAB:" for="numoab" />
+			<p:inputText value="#{advogadoController.advogado.numOab}"
+				style="width:160%" id="numoab" />
+
+			<p:spacer width="50" height="30" />
+
+			<h:outputLabel value="UF Incrição:" />
+				<p:selectOneMenu
+					value="#{advogadoController.advogado.ufInscricaoOab}">
+					<f:selectItems value="#{advogadoController.selectItensEstados}" />
+				</p:selectOneMenu>
+		</h:panelGrid>
+
+		<p:spacer height="20" />
+
+		<p:fieldset legend="Telefones" id="fsTelefones">
+
+			<h:panelGrid cellpadding="3" columns="7">
+				<p:inputMask mask="(99) 9999-9999?9"
+					value="#{advogadoController.telefones[0].numero}" />
+
+				<p:spacer width="20px" />
+
+				<h:outputLabel value="Operadora:" />
+				<p:selectOneMenu value="#{advogadoController.telefones[0].operadora}">
+					<f:selectItems value="#{advogadoController.selectItensOperadora}" /> 
+				</p:selectOneMenu>
+
+				<p:spacer width="20px" />
+
+				<h:outputLabel value="Pessoa de contato:" />
+				<p:inputText value="#{advogadoController.telefones[0].contato}"
+					style="width: 200px;" />
+
+			</h:panelGrid>
+
+			<h:panelGrid cellpadding="3" columns="7">
+				<p:inputMask mask="(99) 9999-9999?9"
+					value="#{advogadoController.telefones[1].numero}" />
+				<p:spacer width="20px" />
+
+				<h:outputLabel value="Operadora:" />
+				<p:selectOneMenu value="#{advogadoController.telefones[1].operadora}">
+					<f:selectItems value="#{advogadoController.selectItensOperadora}" />
+				</p:selectOneMenu>
+
+				<p:spacer width="20px" />
+
+				<h:outputLabel value="Pessoa de contato:" />
+				<p:inputText value="#{advogadoController.telefones[1].contato}"
+					style="width: 200px;" />
+			</h:panelGrid>
+
+			<h:panelGrid cellpadding="3" columns="7">
+				<p:inputMask mask="(99) 9999-9999?9"
+					value="#{advogadoController.telefones[2].numero}" />
+				<p:spacer width="20px" />
+
+				<h:outputLabel value="Operadora:" />
+				<p:selectOneMenu value="#{advogadoController.telefones[2].operadora}">
+					<f:selectItems value="#{advogadoController.selectItensOperadora}" />
+				</p:selectOneMenu>
+
+				<p:spacer width="20px" />
+
+				<h:outputLabel value="Pessoa de contato:" />
+				<p:inputText value="#{advogadoController.telefones[2].contato}"
+					style="width: 200px;" />
+			</h:panelGrid>
+
+			<h:panelGrid cellpadding="3" columns="7">
+				<p:inputMask mask="(99) 9999-9999?9"
+					value="#{advogadoController.telefones[3].numero}" />
+				<p:spacer width="20px" />
+
+				<h:outputLabel value="Operadora:" />
+				<p:selectOneMenu value="#{advogadoController.telefones[3].operadora}">
+					<f:selectItems value="#{advogadoController.selectItensOperadora}" />
+				</p:selectOneMenu>
+
+				<p:spacer width="20px" />
+
+				<h:outputLabel value="Pessoa de contato:" />
+				<p:inputText value="#{advogadoController.telefones[3].contato}"
+					style="width: 200px;" />
+			</h:panelGrid>
+
+		</p:fieldset>
+
+		<p:fieldset legend="Endereço">
+
+			<h:panelGrid columns="5" cellpadding="3">
+				<h:outputLabel value="Logradouro:" />
+				<p:inputText
+					value="#{advogadoController.advogado.endereco.logradouro}"
+					style="width: 250px;" />
+
+				<p:spacer width="30" />
+
+				<h:outputLabel value="Complemento:" />
+				<p:inputText
+					value="#{advogadoController.advogado.endereco.complemento}"
+					style="width: 250px;" />
+
+				<h:outputLabel value="Número:" />
+				<p:inputText value="#{advogadoController.advogado.endereco.numero}"
+					style="width: 250px;" />
+
+				<p:spacer width="30" />
+
+				<h:outputLabel value="Bairro:" />
+				<p:inputText value="#{advogadoController.advogado.endereco.bairro}"
+					style="width: 250px;" />
+
+				<h:outputLabel value="Cidade" />
+				<p:inputText value="#{advogadoController.advogado.endereco.cidade}"
+					style="width: 250px;" />
+
+				<p:spacer width="30" />
+
+				<h:outputLabel value="UF:" />
+				<p:selectOneMenu
+					value="#{advogadoController.advogado.endereco.estado}">
+					<f:selectItems value="#{clienteController.selectItensEstados}" />
+				</p:selectOneMenu>
+
+				<h:outputLabel value="Ponto de referência:" />
+				<p:inputText
+					value="#{advogadoController.advogado.endereco.pontoReferencia}"
+					style="width: 250px;" />
+
+				<p:spacer width="30" />
+
+				<h:outputLabel value="CEP:" />
+				<p:inputMask mask="99.999-999"
+					value="#{advogadoController.advogado.endereco.cep}"
+					style="widht: 60px" />
+			</h:panelGrid>
+
+		</p:fieldset>
+
+		<h:panelGrid>
+			<h:column>
+				<p:spacer width="50" />
+				<p:commandButton value="Novo"
+					action="#{advogadoController.instanciar}" ajax="false" />
+				<p:spacer width="30px" height="0" />
+				<p:commandButton value="Salvar" styleClass="button"
+					action="#{abasController.salvarAdvogado}" ajax="false" />
+			</h:column>
+		</h:panelGrid>
+	</h:form>
+
+</ui:component>
+</html>
