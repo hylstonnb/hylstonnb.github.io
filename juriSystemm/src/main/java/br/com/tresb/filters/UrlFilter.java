@@ -52,13 +52,14 @@ public class UrlFilter implements Filter {
 
 		String urlLoginPage = req.getContextPath() + "/pages/login.jsf";
 
-		if (uri.equals(req.getContextPath() + "/cadastrar.jsf")) {
+		//if (uri.equals(req.getContextPath() + "/cadastrar.jsf")) {
 
-			this.cadastrarUsuario();
+		//	this.cadastrarUsuario();
 
-			((HttpServletResponse) response).sendRedirect(urlLoginPage);
+		//	((HttpServletResponse) response).sendRedirect(urlLoginPage);
 
-		} else if (usuario == null && uri.contains(urlLoginPage)) {
+		//} 
+		if (usuario == null && uri.contains(urlLoginPage)) {
 
 			((HttpServletResponse) response).sendRedirect(req.getContextPath() + "/login.jsf");
 
@@ -71,29 +72,5 @@ public class UrlFilter implements Filter {
 			chain.doFilter(request, response);
 		}
 	}
-
-	public void cadastrarUsuario() {
-
-		UsuarioDAO dao = SpringResources.getBean(UsuarioDAO.class);
-
-		Usuario usuario = new Usuario();
-
-		usuario.setNome("Natann");
-
-		usuario.setEmail("natann@3bconsultoria.com.br");
-
-		usuario.setPerfil(EnumPerfil.ADMINISTRADOR);
-
-		usuario.setSalt(UtilObjeto.getSalt());
-
-		usuario.setStatus(EnumStatus.ATIVO);
-
-		usuario.setSenha(UtilObjeto.getHashCode(UtilObjeto.getHashCode("123") + usuario.getSalt()));
-
-		if (dao.obterPorEmail(usuario.getEmail()) == null) {
-
-			dao.salvar(usuario);
-		}
-	}
-
+	
 }
